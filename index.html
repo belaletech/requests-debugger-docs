@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Requests Debugger · TestMu AI</title>
+<meta name="description" content="Find out why Selenium and Appium requests fail before they reach TestMu AI. Desktop app for macOS, Windows and Linux, plus a command-line binary for CI/CD.">
+<meta property="og:title" content="TestMu AI Requests Debugger">
+<meta property="og:description" content="Find out why a test request never reached TestMu AI. Desktop app for macOS, Windows and Linux.">
+<meta property="og:image" content="assets/img/dashboard-running.png">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <img src="assets/img/mark-white.png" alt="" width="15" height="24">
+    <span><b>TestMu AI</b> Requests Debugger</span>
+  </a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="sidebar">Menu</button>
+</header>
+
+<nav class="sidebar" id="sidebar" aria-label="Documentation">
+  <a class="brand side-brand" href="#top">
+    <img src="assets/img/mark-white.png" alt="" width="17" height="27">
+    <span><b>TestMu AI</b><br>Requests Debugger</span>
+  </a>
+  <span class="version">v1.1.0-beta.3 · Beta</span>
+
+  <p class="nav-group">Get started</p>
+  <a href="#overview">Overview</a>
+  <a href="#before-after">Before and now</a>
+  <a href="#demo">Demo video</a>
+  <a href="#download">Download</a>
+  <a href="#install">Install</a>
+
+  <p class="nav-group">Desktop app</p>
+  <a href="#debug">Debug a failing test</a>
+  <a href="#screens">Screens</a>
+  <a href="#code">Change the hub URL</a>
+
+  <p class="nav-group">More</p>
+  <a href="#cli">Command line (CI/CD)</a>
+  <a href="#logs">Logs</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#troubleshooting">Troubleshooting</a>
+  <a href="#help">Get help</a>
+</nav>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="kicker">TestMu AI · formerly LambdaTest</p>
+    <h1>See exactly where your test request stopped.</h1>
+    <p class="lede">Requests Debugger sits between your Selenium or Appium test and the TestMu AI hub. It records every request, checks your network and machine, and tells you why a request never reached us.</p>
+    <div class="cta">
+      <a class="btn primary" id="cta-download" href="#download">Download the app</a>
+      <a class="btn" href="#debug">How it works</a>
+    </div>
+    <p class="cta-note" id="cta-note">Free · macOS, Windows and Linux · Beta</p>
+  </div>
+  <figure class="hero-shot">
+    <button class="zoom" data-src="assets/img/dashboard-running.png" data-cap="Dashboard during a live run">
+      <img src="assets/img/dashboard-running.png" alt="Requests Debugger dashboard during a live run: totals, active sessions and recent requests" width="1600" height="1000">
+    </button>
+  </figure>
+</section>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+  <h2>Why use it</h2>
+  <p>Sometimes a test fails with <em>session not created</em>, <em>connection reset</em>, <em>timeout</em> or <em>ECONNREFUSED</em>, and the request never shows up on your TestMu AI dashboard. The cause is usually between your machine and our hub: a corporate proxy, a firewall, a VPN, DNS, an overloaded machine, or a network that drops the request.</p>
+  <p>Run your test through Requests Debugger and you get a clear answer, plus a log folder you can send to our support team.</p>
+
+  <dl class="features">
+    <div><dt>Every request, recorded</dt><dd>Method, endpoint, status, timing and response for each call your test makes.</dd></div>
+    <div><dt>Connectivity checks</dt><dd>Can your machine reach the hub over HTTP and HTTPS, with and without your proxy?</dd></div>
+    <div><dt>Network details</dt><dd>Ping to the hub and the open connections on your machine.</dd></div>
+    <div><dt>CPU and memory</dt><dd>How busy your machine was when the run started, with the top processes.</dd></div>
+    <div><dt>Automatic retry</dt><dd>A request that fails inside the tool is retried once, and both attempts are logged.</dd></div>
+    <div><dt>One folder for support</dt><dd>Every run is saved as its own folder, ready to zip and share.</dd></div>
+  </dl>
+
+  <div class="choose">
+    <div>
+      <h3>Desktop app</h3>
+      <p>Debug a failing test on your own computer, with a visual dashboard. No terminal needed.</p>
+      <a href="#download">Download for macOS, Windows or Linux</a>
+    </div>
+    <div>
+      <h3>Command-line binary</h3>
+      <p>For build servers, Docker and CI/CD pipelines. Same engine, same log files.</p>
+      <a href="#cli">Use it in CI/CD</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section id="before-after">
+  <h2>Before and now</h2>
+  <p>Until now, Requests Debugger was a terminal binary. The desktop app does the same job without any setup.</p>
+  <div class="compare">
+    <div class="before">
+      <h3>Before: the binary</h3>
+<pre class="term"><code>$ chmod u+x ./request_debugger_mac
+$ export HUB_URL=mobile-hub.lambdatest.com
+$ ./request_debugger_mac
+# …then read raw files in
+# RequestsDebuggerLogs/ by hand</code></pre>
+      <p>Allow it in security settings, set the hub by hand for real devices, and search through log files yourself.</p>
+    </div>
+    <div class="after">
+      <h3>Now: the desktop app</h3>
+      <ol>
+        <li>Open the app and choose what you are testing</li>
+        <li>Pick a folder for the logs</li>
+        <li>Click <b>Start Debugger</b></li>
+        <li>Point your test at <code>localhost:9688</code></li>
+        <li>Watch every request live, and see failures explained</li>
+      </ol>
+      <p>No <code>HUB_URL</code>, no terminal, no digging through files.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO VIDEO ============ -->
+<section id="demo">
+  <h2>Demo video</h2>
+  <!--
+    TO ADD THE VIDEO: replace the whole <div class="video-slot"> below with ONE of these.
+    YouTube (unlisted is fine):
+      <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Requests Debugger demo" allowfullscreen></iframe></div>
+    Loom:
+      <div class="video"><iframe src="https://www.loom.com/embed/VIDEO_ID" title="Requests Debugger demo" allowfullscreen></iframe></div>
+  -->
+  <div class="video-slot">
+    <img src="assets/img/welcome.png" alt="" aria-hidden="true">
+    <div class="video-msg">
+      <i class="play" aria-hidden="true"></i>
+      <b>Walkthrough video coming soon</b>
+      <span>Install the app and debug a failing test in about two minutes.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD ============ -->
+<section id="download">
+  <h2>Download</h2>
+  <p>Current version: <b>1.1.0-beta.3</b> (Beta).</p>
+
+  <div class="table-wrap">
+  <table class="dl">
+    <thead><tr><th>Your computer</th><th>File</th></tr></thead>
+    <tbody>
+      <tr data-os="mac"><td>macOS, Apple Silicon (M1–M4)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1uj-C7Fzo8BYfxpgYmtUxJKOEcsm5MtFn">mac-arm64.dmg</a></td></tr>
+      <tr data-os="mac"><td>macOS, Intel</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1OSrTAM5f0H4SEkZ7Usluw-sAiWVgJtlR">mac-x64.dmg</a></td></tr>
+      <tr data-os="win"><td>Windows, most PCs (x64)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1FD1Amy1lQfzPuqbPeykIw9SKQxDdRU1q">Setup-x64.exe</a></td></tr>
+      <tr data-os="win"><td>Windows on ARM</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1VOP2tTEkcKnT0_V-72-ckN2SLk4N_9QO">Setup-arm64.exe</a></td></tr>
+      <tr data-os="win"><td>Windows, portable (no installer)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1mgw1EmX1KCGduiVFJdHodAOGQs3ZYHlq">x64.zip</a></td></tr>
+      <tr data-os="linux"><td>Ubuntu / Debian (x64)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1vffXveGHO7oXfU5HJT94IbfOiWb7ZcW1">amd64.deb</a></td></tr>
+      <tr data-os="linux"><td>Ubuntu / Debian (ARM64)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1tCiQeU0f29Id5Ulv-rmRR2xowsqI99Kr">arm64.deb</a></td></tr>
+      <tr data-os="linux"><td>Any Linux (x64)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1cSM2j9Tdfh5-wj0sjpL5n7ujPZGYpWEa">x86_64.AppImage</a></td></tr>
+      <tr data-os="linux"><td>Any Linux (ARM64)</td><td><a href="https://drive.google.com/uc?export=download&amp;id=1U8phC44dD8mctXqIj5_ibM-Po6YJlqRx">arm64.AppImage</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">Every file name starts with <code>TestMu AI Requests Debugger-1.1.0-beta.3-</code>.</p>
+  <p>Need it for a build server or CI/CD pipeline? <a href="https://drive.google.com/uc?export=download&amp;id=11KyyTWlFEzzKWoKCFWPGJ745StEC8OPi">Download the command-line binaries</a> (macOS, Linux, Windows) and see <a href="#cli">Command line (CI/CD)</a>.</p>
+
+  <div class="callout note">
+    <b>Google Drive warning.</b> The files are larger than 100 MB, so Drive says it can't scan them for viruses. Click <b>Download anyway</b>.
+  </div>
+
+  <h3>Which file do I need?</h3>
+  <ul>
+    <li><b>Mac:</b> Apple menu → <b>About This Mac</b>. <em>Chip: Apple M…</em> means Apple Silicon; <em>Processor: Intel</em> means Intel.</li>
+    <li><b>Windows:</b> almost every PC needs <b>x64</b>. Choose ARM only for Windows on ARM laptops (for example Snapdragon).</li>
+    <li><b>Linux:</b> the <b>.deb</b> on Ubuntu and Debian, the <b>AppImage</b> on any other distribution.</li>
+  </ul>
+</section>
+
+<!-- ============ INSTALL ============ -->
+<section id="install">
+  <h2>Install</h2>
+  <div class="callout warn">
+    <b>The beta is not signed yet.</b> The first time you open it, macOS and Windows show a security warning. The steps below show how to allow it once.
+  </div>
+
+  <div class="tabs" data-tabs="os">
+    <div role="tablist" aria-label="Operating system">
+      <button role="tab" id="t-mac" aria-controls="p-mac" aria-selected="true">macOS</button>
+      <button role="tab" id="t-win" aria-controls="p-win" aria-selected="false" tabindex="-1">Windows</button>
+      <button role="tab" id="t-linux" aria-controls="p-linux" aria-selected="false" tabindex="-1">Linux</button>
+    </div>
+
+    <div role="tabpanel" id="p-mac" aria-labelledby="t-mac">
+      <ol class="plain-steps">
+        <li>Open the <code>.dmg</code> file and drag <b>TestMu AI Requests Debugger</b> into <b>Applications</b>.</li>
+        <li>Open the app from Applications. macOS blocks it the first time.</li>
+        <li>Open <b>System Settings → Privacy &amp; Security</b>, scroll down, and click <b>Open Anyway</b> next to the message about TestMu AI Requests Debugger. Enter your password.</li>
+        <li>The app opens. You only need to do this once.</li>
+      </ol>
+      <p class="small">Right-click → Open no longer skips this check on recent macOS versions.</p>
+    </div>
+
+    <div role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
+      <ol class="plain-steps">
+        <li>Run <code>TestMu AI Requests Debugger-Setup-1.1.0-beta.3-x64.exe</code>. It installs for your user only; no administrator rights are needed.</li>
+        <li>If you see <em>"Windows protected your PC"</em>, click <b>More info → Run anyway</b>.</li>
+        <li>Start the app from the Start menu.</li>
+      </ol>
+      <p class="small">Prefer not to install? Unzip the portable <code>.zip</code> and run <code>TestMu AI Requests Debugger.exe</code>.</p>
+    </div>
+
+    <div role="tabpanel" id="p-linux" aria-labelledby="t-linux" hidden>
+      <p><b>Ubuntu / Debian (.deb)</b></p>
+<pre><code>sudo apt install ./TestMu\ AI\ Requests\ Debugger-1.1.0-beta.3-amd64.deb</code></pre>
+      <p>Start it from your applications menu, or run <code>testmu-requests-debugger</code>.</p>
+      <p><b>AppImage (any distribution)</b>: double-click it, or run:</p>
+<pre><code>./TestMu\ AI\ Requests\ Debugger-1.1.0-beta.3-x86_64.AppImage</code></pre>
+      <p class="small">If it mentions FUSE, run <code>sudo apt install fuse3</code>, or start it with <code>--appimage-extract-and-run</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEBUG A FAILING TEST ============ -->
+<section id="debug">
+  <h2>Debug a failing test</h2>
+  <p>The whole flow, from opening the app to sending logs to support.</p>
+
+  <ol class="steps">
+    <li>
+      <div class="step-text">
+        <h3>Open the app</h3>
+        <p>Click <b>Get Started</b>. The version at the bottom confirms you are on the beta.</p>
+      </div>
+      <button class="zoom shot card-shot" data-src="assets/img/welcome.png" data-cap="Welcome screen"><img src="assets/img/welcome.png" alt="Welcome screen with the Get Started button" loading="lazy" width="1232" height="762"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Choose what you are testing</h3>
+        <p>This sets the hub the debugger forwards your requests to. You no longer need <code>HUB_URL</code>.</p>
+        <ul>
+          <li><b>Mobile App / Mobile Web</b>: Appium on real devices and emulators</li>
+          <li><b>Desktop Web / Linux Automation</b>: Selenium browser tests</li>
+          <li><b>Custom Hub</b>: a private relay, staging or regional hub</li>
+        </ul>
+      </div>
+      <button class="zoom shot card-shot" data-src="assets/img/platform.png" data-cap="Choose the testing platform"><img src="assets/img/platform.png" alt="Testing platform step with three options and the hub URL" loading="lazy" width="1232" height="1108"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Pick a folder for the logs</h3>
+        <p>Each run is saved as its own folder here, so you can come back to it later.</p>
+      </div>
+      <button class="zoom shot card-shot" data-src="assets/img/log-storage.png" data-cap="Choose a log location"><img src="assets/img/log-storage.png" alt="Log storage step with the folder path and Choose Folder button" loading="lazy" width="1232" height="672"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Check the summary</h3>
+        <p>Confirm the platform, hub and log folder, then click <b>Continue</b>.</p>
+      </div>
+      <button class="zoom shot card-shot" data-src="assets/img/summary.png" data-cap="Configuration summary"><img src="assets/img/summary.png" alt="Configuration summary" loading="lazy" width="1232" height="668"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Start the debugger</h3>
+        <p>Click <b>Start Debugger</b>. The screen shows the address your test should use: <code>localhost:9688</code>.</p>
+      </div>
+      <button class="zoom shot card-shot" data-src="assets/img/review.png" data-cap="Ready to start"><img src="assets/img/review.png" alt="Debugger configuration with the Start Debugger button and localhost:9688" loading="lazy" width="1232" height="702"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Point your test at the debugger</h3>
+        <p>Change only the hub address in your test. Use <code>http</code>, because the debugger runs on your own machine.</p>
+<pre><code><span class="c">Before</span>  https://USERNAME:ACCESS_KEY@hub.lambdatest.com/wd/hub
+<span class="c">After </span>  http://USERNAME:ACCESS_KEY@localhost:9688/wd/hub</code></pre>
+        <p class="small">For Appium the "before" hub is <code>mobile-hub.lambdatest.com</code>; the "after" address is the same. See <a href="#code">code examples</a>.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Run your test and watch it live</h3>
+        <p>The dashboard fills in as requests arrive: totals, failures, average duration and active sessions.</p>
+      </div>
+      <button class="zoom shot" data-src="assets/img/dashboard-running.png" data-cap="Dashboard during a live run"><img src="assets/img/dashboard-running.png" alt="Dashboard during a live run" loading="lazy" width="1600" height="1000"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Open a failed request</h3>
+        <p>In <b>Requests</b>, filter by <b>Failed</b> and click one. The app shows where the request stopped (client, debugger or hub), the error, and each retry.</p>
+      </div>
+      <button class="zoom shot" data-src="assets/img/request-detail.png" data-cap="A failed request: path, error and retries"><img src="assets/img/request-detail.png" alt="Request detail showing the request failed before reaching the hub, with error and retry attempts" loading="lazy" width="1600" height="1000"></button>
+    </li>
+    <li>
+      <div class="step-text">
+        <h3>Stop and send the logs</h3>
+        <p>Click <b>Stop Debugger</b>. The run is saved under <b>Runs</b>. Click <b>Open Log Folder</b>, zip the run folder and send it to TestMu AI support with a short description of the problem.</p>
+        <p class="small">The log folder contains your access key. See <a href="#privacy">Privacy</a>.</p>
+      </div>
+      <button class="zoom shot" data-src="assets/img/runs.png" data-cap="Saved runs"><img src="assets/img/runs.png" alt="Runs screen listing saved runs" loading="lazy" width="1600" height="1000"></button>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ SCREENS ============ -->
+<section id="screens">
+  <h2>Screens</h2>
+  <p>Use the left menu in the app to look at the run from different angles.</p>
+
+  <div class="screens">
+    <figure>
+      <button class="zoom" data-src="assets/img/requests.png" data-cap="Requests"><img src="assets/img/requests.png" alt="Requests list" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>Requests.</b> Every call with status, duration and result. Search, filter by status or session, and group by run.</figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" data-src="assets/img/connectivity.png" data-cap="Connectivity"><img src="assets/img/connectivity.png" alt="Connectivity screen" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>Connectivity.</b> Can your machine reach the hub? Checks run at start and again whenever a request fails.</figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" data-src="assets/img/network.png" data-cap="Network"><img src="assets/img/network.png" alt="Network screen" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>Network.</b> Ping to the hub, open connections, the slowest requests and network errors.</figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" data-src="assets/img/cpu-memory.png" data-cap="CPU & Memory"><img src="assets/img/cpu-memory.png" alt="CPU and Memory screen" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>CPU &amp; Memory.</b> How busy your machine was when the run started, and the top processes, including the debugger itself.</figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" data-src="assets/img/errors.png" data-cap="Errors"><img src="assets/img/errors.png" alt="Errors screen" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>Errors.</b> Every error in one list: connectivity, network, request and debugger errors.</figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" data-src="assets/img/settings.png" data-cap="Settings"><img src="assets/img/settings.png" alt="Settings screen" loading="lazy" width="1600" height="1000"></button>
+      <figcaption><b>Settings.</b> Log folder, default hub, ports, appearance and how long to keep runs.</figcaption>
+    </figure>
+  </div>
+
+  <figure class="real">
+    <button class="zoom" data-src="assets/img/cpu-memory-windows-real.png" data-cap="CPU & Memory on a real Windows 11 machine"><img src="assets/img/cpu-memory-windows-real.png" alt="CPU and Memory on Windows 11 with the process table and the debugger's own row" loading="lazy" width="1572" height="990"></button>
+    <figcaption><b>On Windows,</b> CPU is shown as a percentage of all CPUs, like Task Manager. The <code>powershell</code> and <code>WmiPrvSE</code> rows are the debugger taking the measurement. Captured on Windows 11.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ CODE ============ -->
+<section id="code">
+  <h2>Change the hub URL</h2>
+  <p>Only the hub address changes. When you are done debugging, switch it back.</p>
+
+  <div class="tabs" data-tabs="lang">
+    <div role="tablist" aria-label="Language">
+      <button role="tab" id="t-java" aria-controls="p-java" aria-selected="true">Java</button>
+      <button role="tab" id="t-py" aria-controls="p-py" aria-selected="false" tabindex="-1">Python</button>
+      <button role="tab" id="t-js" aria-controls="p-js" aria-selected="false" tabindex="-1">WebdriverIO</button>
+    </div>
+    <div role="tabpanel" id="p-java" aria-labelledby="t-java">
+<pre><code>String hubURL = "http://" + username + ":" + accessKey + "@localhost:9688/wd/hub";
+WebDriver driver = new RemoteWebDriver(new URL(hubURL), capabilities);</code></pre>
+    </div>
+    <div role="tabpanel" id="p-py" aria-labelledby="t-py" hidden>
+<pre><code>hub_url = f"http://{username}:{access_key}@localhost:9688/wd/hub"
+driver = webdriver.Remote(command_executor=hub_url, options=options)</code></pre>
+    </div>
+    <div role="tabpanel" id="p-js" aria-labelledby="t-js" hidden>
+<pre><code>// wdio.conf.js
+hostname: 'localhost',
+port: 9688,
+protocol: 'http',
+path: '/wd/hub',
+user: process.env.LT_USERNAME,
+key: process.env.LT_ACCESS_KEY,</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLI ============ -->
+<section id="cli">
+  <h2>Command line (CI/CD)</h2>
+  <p>On build servers, in Docker or in pipelines, use the command-line binary. It uses the same engine and writes the same log files as the app.</p>
+
+  <h3>Get the binary</h3>
+  <p><a class="btn" href="https://drive.google.com/uc?export=download&amp;id=11KyyTWlFEzzKWoKCFWPGJ745StEC8OPi">Download the command-line binaries</a></p>
+  <p>Pick the binary for your platform and run it in a terminal:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Platform</th><th>Command</th></tr></thead>
+    <tbody>
+      <tr><td>macOS (Intel; runs under Rosetta on Apple Silicon)</td><td><code>./request_debugger_mac</code></td></tr>
+      <tr><td>Linux (x64)</td><td><code>./request_debugger_linux_64</code></td></tr>
+      <tr><td>Windows (x64)</td><td><code>request_debugger_win64.exe</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>On macOS and Linux, make it executable first: <code>chmod u+x ./request_debugger_mac</code></p>
+
+  <h3>Choose the hub</h3>
+  <p>The binary uses the web automation hub by default. For Appium and real devices, set the mobile hub before you start it:</p>
+<pre><code># macOS / Linux
+export HUB_URL=mobile-hub.lambdatest.com
+
+# Windows (cmd)
+set HUB_URL=mobile-hub.lambdatest.com</code></pre>
+  <p>Then point your test at <code>http://USERNAME:ACCESS_KEY@localhost:9688/wd/hub</code>.</p>
+
+  <h3>Options</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Option</th><th>What it does</th><th>Default</th></tr></thead>
+    <tbody>
+      <tr><td><code>--port</code></td><td>Port of the forward proxy</td><td><code>9687</code></td></tr>
+      <tr><td><code>--reverse-proxy-port</code></td><td>Port of the reverse proxy (the hub replacement)</td><td><code>9688</code></td></tr>
+      <tr><td><code>--scheme</code></td><td>Scheme used to reach the hub</td><td><code>https</code></td></tr>
+      <tr><td><code>--proxy-host</code></td><td>Your company's upstream proxy</td><td>none</td></tr>
+      <tr><td><code>--proxy-port</code></td><td>Upstream proxy port</td><td><code>3128</code></td></tr>
+      <tr><td><code>--proxy-user</code> / <code>--proxy-pass</code></td><td>Upstream proxy credentials</td><td>none</td></tr>
+      <tr><td><code>--retry-delay</code></td><td>Wait before retrying a failed request (ms)</td><td><code>1000</code></td></tr>
+      <tr><td><code>--request-timeout</code></td><td>Hard timeout per request (ms)</td><td><code>1800000</code> (30 min)</td></tr>
+      <tr><td><code>--logs-path</code></td><td>Where the <code>RequestsDebuggerLogs</code> folder is created</td><td>current folder</td></tr>
+      <tr><td><code>--del-logs</code></td><td>Delete old logs before starting</td><td>off</td></tr>
+      <tr><td><code>--help</code>, <code>--version</code></td><td>Help and version</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Example: GitHub Actions</h3>
+<pre><code>- name: Start Requests Debugger
+  run: |
+    chmod u+x ./request_debugger_linux_64
+    HUB_URL=hub.lambdatest.com ./request_debugger_linux_64 --logs-path ./rd-logs &amp;
+    sleep 5
+
+- name: Run tests through the debugger
+  env:
+    LT_HUB_URL: http://${{ secrets.LT_USERNAME }}:${{ secrets.LT_ACCESS_KEY }}@localhost:9688/wd/hub
+  run: mvn test
+
+- name: Upload debugger logs
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: requests-debugger-logs
+    path: ./rd-logs/RequestsDebuggerLogs</code></pre>
+  <p>The same pattern works in Jenkins, GitLab CI and Azure DevOps: start the binary in the background, run the tests against <code>localhost:9688</code>, and keep the log folder as a private build artifact.</p>
+
+  <h3>Use it as a proxy instead</h3>
+  <p>Rather than changing the hub URL, you can route traffic through the forward proxy on port <code>9687</code>. In Java:</p>
+<pre><code>System.getProperties().put("http.proxyHost", "localhost");
+System.getProperties().put("http.proxyPort", "9687");</code></pre>
+</section>
+
+<!-- ============ LOGS ============ -->
+<section id="logs">
+  <h2>Logs</h2>
+  <p>Each run creates its own folder. Inside <code>RequestsDebuggerLogs</code>:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>File</th><th>What it contains</th></tr></thead>
+    <tbody>
+      <tr><td><code>Requests.log</code></td><td>Every request and response, with timing and retries</td></tr>
+      <tr><td><code>Connectivity.log</code></td><td>Reachability of the hub and <code>automation.lambdatest.com</code>, with and without proxy. Repeated when a request fails</td></tr>
+      <tr><td><code>NetworkStats.log</code></td><td>Ping and open connections (on Windows also the routing table and <code>ipconfig /all</code>). Repeated when a request fails</td></tr>
+      <tr><td><code>CPUStats.log</code></td><td>CPU load and top processes at start</td></tr>
+      <tr><td><code>MemStats.log</code></td><td>Memory and swap at start</td></tr>
+      <tr><td><code>RDT_Error.log</code></td><td>Unexpected errors inside the tool</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Reading <code>Requests.log</code></h3>
+  <p>Each request has a number (<code>#2</code>) and a unique ID. The ID is also sent to TestMu AI in the <code>X-Requests-Debugger</code> header, so our team can find the same request on our side.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Tag</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>Request Start</code></td><td>Your test's request reached the debugger</td></tr>
+      <tr><td><code>Request End</code></td><td>Your test finished sending it</td></tr>
+      <tr><td><code>Tool Request - Retries Left: N</code></td><td>The debugger forwarded it to the hub (retried once on failure)</td></tr>
+      <tr><td><code>Response End</code></td><td>The final response sent back to your test</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout note">If a request has <code>Request Start</code> but its <code>Tool Request</code> fails with an error such as <code>ENOTFOUND</code> or <code>ECONNRESET</code>, it never reached TestMu AI. <code>Connectivity.log</code> and <code>NetworkStats.log</code> usually show why.</div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section id="privacy">
+  <h2>Privacy</h2>
+  <p>Everything runs on your machine; the logs stay in the folder you chose. They describe your test traffic and your machine:</p>
+  <ul>
+    <li><code>Requests.log</code> stores requests in full, <b>including the Authorization header with your username and access key</b>.</li>
+    <li><code>NetworkStats.log</code> and <code>CPUStats.log</code> list processes and network connections. On Windows, <code>NetworkStats.log</code> also includes <code>ipconfig /all</code> (adapter names, IP and MAC addresses).</li>
+  </ul>
+  <div class="callout warn">Share the log folder only with TestMu AI support. If it was shared anywhere else, regenerate your access key in your TestMu AI profile.</div>
+</section>
+
+<!-- ============ TROUBLESHOOTING ============ -->
+<section id="troubleshooting">
+  <h2>Troubleshooting</h2>
+  <details>
+    <summary>"Port 9688 is already in use"</summary>
+    <p>Another copy of the debugger is still running. Quit it (on macOS use <b>Cmd+Q</b>; closing the window is not enough), or change the port in <b>Settings</b>.</p>
+  </details>
+  <details>
+    <summary>My test can't connect to localhost:9688</summary>
+    <p>Check that the app shows <b>Running</b>, that the hub URL starts with <code>http://</code> (not <code>https://</code>), and that the test runs on the same machine as the debugger.</p>
+  </details>
+  <details>
+    <summary>macOS says the app can't be opened</summary>
+    <p>Use <b>System Settings → Privacy &amp; Security → Open Anyway</b>. See <a href="#install">Install</a>.</p>
+  </details>
+  <details>
+    <summary>Windows shows "Windows protected your PC"</summary>
+    <p>Click <b>More info → Run anyway</b>. The beta is not signed yet.</p>
+  </details>
+  <details>
+    <summary>Linux: the app doesn't start on Ubuntu 23.10 or 24.04</summary>
+    <p>Start it from a terminal with <code>testmu-requests-debugger --no-sandbox</code>, and let us know you needed this.</p>
+  </details>
+  <details>
+    <summary>I'm behind a corporate proxy</summary>
+    <p>Give the debugger your proxy details (CLI: <code>--proxy-host</code>, <code>--proxy-port</code>, <code>--proxy-user</code>, <code>--proxy-pass</code>). <code>Connectivity.log</code> then shows results with and without the proxy, which tells us whether the proxy blocks requests.</p>
+  </details>
+</section>
+
+<!-- ============ HELP ============ -->
+<section id="help" class="help">
+  <h2>Get help</h2>
+  <p>Contact TestMu AI support through the chat on your dashboard or by email, and attach the zipped run folder. Found a bug in the beta? Tell us your operating system and chip, and what you were doing.</p>
+</section>
+
+<footer class="foot">
+  <p>TestMu AI (formerly LambdaTest) · Requests Debugger 1.1.0-beta.3</p>
+</footer>
+</main>
+
+<dialog class="lightbox" aria-label="Screenshot">
+  <form method="dialog"><button class="close" aria-label="Close">Close</button></form>
+  <img alt="">
+  <p class="lb-cap"></p>
+</dialog>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
