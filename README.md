@@ -12,11 +12,12 @@ Live site: https://belaletech.github.io/requests-debugger-docs/
 | `assets/style.css` | Styles |
 | `assets/site.js` | Tabs, copy buttons, screenshot zoom, mobile menu, OS detection for downloads |
 | `assets/img/` | Screenshots and logo |
+| `assets/video/` | Demo video (MP4 + WebM) and its poster image |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are |
 
 ## Common edits
 
-**Add the demo video.** In `index.html`, search for `TO ADD THE VIDEO`. Replace the `<div class="video-slot">…</div>` block with the YouTube or Loom snippet shown in the comment. Don't commit video files (GitHub has a 100 MB file limit).
+**Replace the demo video.** Put the new files in `assets/video/` with the same names (keep each well under 100 MB). To use YouTube or Loom instead, replace the `<div class="video">` block in `index.html` with their embed iframe.
 
 **New release.** In `index.html`, update the version (search for `1.1.0-beta.3`) and the Google Drive links in the `Download` table.
 

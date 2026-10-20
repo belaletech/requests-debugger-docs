@@ -134,21 +134,14 @@ $ ./request_debugger_mac
 <!-- ============ DEMO VIDEO ============ -->
 <section id="demo">
   <h2>Demo video</h2>
-  <!--
-    TO ADD THE VIDEO: replace the whole <div class="video-slot"> below with ONE of these.
-    YouTube (unlisted is fine):
-      <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Requests Debugger demo" allowfullscreen></iframe></div>
-    Loom:
-      <div class="video"><iframe src="https://www.loom.com/embed/VIDEO_ID" title="Requests Debugger demo" allowfullscreen></iframe></div>
-  -->
-  <div class="video-slot">
-    <img src="assets/img/welcome.png" alt="" aria-hidden="true">
-    <div class="video-msg">
-      <i class="play" aria-hidden="true"></i>
-      <b>Walkthrough video coming soon</b>
-      <span>Install the app and debug a failing test in about two minutes.</span>
-    </div>
+  <div class="video">
+    <video controls preload="metadata" playsinline poster="assets/video/poster.jpg">
+      <source src="assets/video/requests-debugger-demo.mp4" type="video/mp4">
+      <source src="assets/video/requests-debugger-demo.webm" type="video/webm">
+      Your browser can't play this video. <a href="assets/video/requests-debugger-demo.mp4">Download it</a>.
+    </video>
   </div>
+  <p class="small">About 80 seconds, no sound. Shown with sample data.</p>
 </section>
 
 <!-- ============ DOWNLOAD ============ -->
